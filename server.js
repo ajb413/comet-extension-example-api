@@ -4,6 +4,11 @@ const helmet = require('helmet');
 const port = process.argv[2] || 3000;
 const db = {};
 
+if (!process.env.MAINNET_PROVIDER_URL) {
+  console.error('MAINNET_PROVIDER_URL environment variable required. Get a JSON RPC URL for free at infura.io or alchemy.com. Exiting.');
+  process.exit(1);
+}
+
 // Update borrower data for all Comet instances
 // Happens in an interval if not manually updated in between auto-syncs
 // const autoSyncInterval = 20 * 60 * 1000; // 20 minutes in ms
